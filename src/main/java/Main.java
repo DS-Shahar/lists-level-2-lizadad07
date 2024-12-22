@@ -1,4 +1,5 @@
 
+
 import java.util.Scanner;
 
 
@@ -51,13 +52,13 @@ public class Main {
 //---- seif5
 		System.out.println(ListWithoutDup(n22)); 
 //---- seif6
-		Node <Integer> n30 = new Node<Integer> (2);
-		Node <Integer> n31 = new Node<Integer> (1);
-		Node <Integer> n32 = new Node<Integer> (1);
-		Node <Integer> n33 = new Node<Integer> (2);
-		Node <Integer> n34 = new Node<Integer> (2);
-		Node <Integer> n35 = new Node<Integer> (1);
-		Node <Integer> n36 = new Node<Integer> (2);
+		Node <Integer> n30 = new Node<Integer> (20);
+		Node <Integer> n31 = new Node<Integer> (15);
+		Node <Integer> n32 = new Node<Integer> (11);
+		Node <Integer> n33 = new Node<Integer> (12);
+		Node <Integer> n34 = new Node<Integer> (13);
+		Node <Integer> n35 = new Node<Integer> (7);
+		Node <Integer> n36 = new Node<Integer> (5);
 		
 		
 		n30.setNext(n31);
@@ -243,24 +244,71 @@ public class Main {
 	}
 	public static int BiggestUpS(Node<Integer> L1) {
 		Node<Integer> p1 = L1;
-		int current = p1.getValue();
+		
+		int last = p1.getValue();
 		p1 = p1.getNext();
-		int last;
-		int maxLen = 0;
+		int current;
+		int maxLen = 1;
 		int count=1;
 		
 		while (p1!=null) {
-			last = current;
 			current = p1.getValue();
+			
 			if (last<=current)
 				count++;
 			else {
-				if (count>maxLen)
+				if (count>maxLen) {
 					maxLen=count;
-				count=1;
+					count = 1;
+				}
 			}
 			p1 = p1.getNext();
+			last = current;
+		}
+		if (count>maxLen) {
+			maxLen=count;
 		}
 		return maxLen;
+	} 
+	public static void PrintBiggestUpS(Node<Integer> L1) {
+		Node<Integer> p1 = L1;
+		Node<Integer> newL = new Node<Integer>(-1);
+		Node<Integer> currentL = newL;
+		Node<Integer> newLMax = new Node<Integer>(-1);
+		Node<Integer> emptyNode = new Node<Integer>(-1);
+		
+		int last = p1.getValue();
+		p1 = p1.getNext();
+		int current;
+		int maxLen = 1;
+		int count=1;
+		
+		while (p1!=null) {
+			current = p1.getValue();
+			
+			if (last<=current) {
+				count++;
+				currentL.setNext(new Node<>(last));
+				currentL = currentL.getNext();
+				currentL.setNext(new Node<>(current));
+				currentL = currentL.getNext();
+			}
+			else {
+				if (count>maxLen) {
+					maxLen=count;
+					newLMax = newL;
+					count = 1;
+					currentL = new Node<Integer>(-1);
+					newL = currentL;
+				}
+			}
+			p1 = p1.getNext();
+			last = current;
+		}
+		if (count>maxLen) {
+			newLMax = newL;
+		}
+		System.out.println(newLMax.getNext());
 	}
+
 }
