@@ -1,5 +1,6 @@
 
 
+
 import java.util.Scanner;
 
 
@@ -34,9 +35,9 @@ public class Main {
 //---- seif2
 		Node <Integer> n22 = new Node<Integer> (6);
 		Node <Integer> n23 = new Node<Integer> (2);
-		Node <Integer> n24 = new Node<Integer> (20);
-		Node <Integer> n25 = new Node<Integer> (4);
-		Node <Integer> n26 = new Node<Integer> (6);
+		Node <Integer> n24 = new Node<Integer> (6);
+		Node <Integer> n25 = new Node<Integer> (6);
+		Node <Integer> n26 = new Node<Integer> (1);
 		
 		
 		n22.setNext(n23);
@@ -46,18 +47,18 @@ public class Main {
 		
 		//System.out.println(SortedUpList(n22)); 
 //---- seif3 
-		System.out.println(SumDistInList(n22,5)); 
+		System.out.println(SumDistInList(n22,6)); 
 //---- seif4
 		System.out.println(IfAllDifferentInList(n22)); 
 //---- seif5
 		System.out.println(ListWithoutDup(n22)); 
 //---- seif6
-		Node <Integer> n30 = new Node<Integer> (20);
-		Node <Integer> n31 = new Node<Integer> (15);
-		Node <Integer> n32 = new Node<Integer> (11);
-		Node <Integer> n33 = new Node<Integer> (12);
-		Node <Integer> n34 = new Node<Integer> (13);
-		Node <Integer> n35 = new Node<Integer> (7);
+		Node <Integer> n30 = new Node<Integer> (8);
+		Node <Integer> n31 = new Node<Integer> (8);
+		Node <Integer> n32 = new Node<Integer> (9);
+		Node <Integer> n33 = new Node<Integer> (1);
+		Node <Integer> n34 = new Node<Integer> (2);
+		Node <Integer> n35 = new Node<Integer> (4);
 		Node <Integer> n36 = new Node<Integer> (5);
 		
 		
@@ -70,10 +71,35 @@ public class Main {
 		System.out.println(BiggestUpS(n30));
 //---- seif7
 		PrintBiggestUpS(n30);
-	
+		
+		int[] arr = new int[]{1, 2, 3};
+		Node <Integer> L1;
+		L1 = arrToList(arr);
+		
+		int[] arr2 = new int[]{0, 2, 3, 1, 2, 3};
+		Node <Integer> L2;
+		L2 = arrToList(arr2);
+		
+//		System.out.println(ifL1IsInAllL2(L1,L2));
 
 		
 	}
+
+	public static Node<Integer> arrToList(int a[]) {
+		Node<Integer> first = new Node<Integer> (a[0]);
+		Node<Integer> prev;
+		prev = first;
+		Node<Integer> p;
+		
+		for (int i=1; i<a.length; i++) {
+			p = new Node<Integer> (a[i]);
+			prev.setNext(p);
+			prev = p;
+			
+		}
+		return first;
+	}
+	
 	public static Node<Integer> newUpList(Node<Integer> L1,Node<Integer> L2) {
 		Node<Integer> p1 = L1;
 		Node<Integer> p2 = L2;
@@ -275,7 +301,6 @@ public class Main {
 		Node<Integer> newL = new Node<Integer>(-1);
 		Node<Integer> currentL = newL;
 		Node<Integer> newLMax = new Node<Integer>(-1);
-		Node<Integer> emptyNode = new Node<Integer>(-1);
 		
 		int last = p1.getValue();
 		p1 = p1.getNext();
@@ -286,11 +311,9 @@ public class Main {
 		while (p1!=null) {
 			current = p1.getValue();
 			
-			if (last<=current) {
+		if (last<=current) {
 				count++;
 				currentL.setNext(new Node<>(last));
-				currentL = currentL.getNext();
-				currentL.setNext(new Node<>(current));
 				currentL = currentL.getNext();
 			}
 			else {
@@ -307,8 +330,28 @@ public class Main {
 		}
 		if (count>maxLen) {
 			newLMax = newL;
+			currentL.setNext(new Node<>(last));
+			currentL = currentL.getNext();
 		}
 		System.out.println(newLMax.getNext());
 	}
+	
+//	public static boolean ifL1IsInAllL2(Node<Integer> L1, Node<Integer> L2) {
+//		Node<Integer> p1 = L1;
+//		Node<Integer> p2 = L2;
+//		boolean flag = true;
+//		
+//		while(p2!=null) {
+//			while (p1!=null) {
+//				
+//				p1= p1.getNext();
+//			}
+//			
+//			p2 = p2.getNext();
+//		}
+//		
+//	}
+	
+
 
 }
