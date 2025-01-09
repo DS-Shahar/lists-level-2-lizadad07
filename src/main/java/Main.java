@@ -82,7 +82,28 @@ public class Main {
 		
 //		System.out.println(ifL1IsInAllL2(L1,L2));
 
-		
+	 int[] arr = new int[]{1, 2, 3,3};
+		 Node<Integer> n1 = arrToList(arr);
+		 System.out.println(prodIfThereAreNoDuplicatesInNode(n1)); //סיבוכיות O(n**2)
+}
+ 
+	public static boolean prodIfThereAreNoDuplicatesInNode(Node<Integer> h) {
+		if (h==null)
+			return true;
+		if (countNumInNode(h, h.getValue())>1) 
+			return false;
+			
+		return prodIfThereAreNoDuplicatesInNode(h.getNext());
+	}
+	public static int countNumInNode(Node<Integer> h, int num) {
+		Node<Integer> p1 = h;
+		int count=0;
+		while(p1!=null) {
+			if (p1.getValue()==num)
+				count++;
+			p1 = p1.getNext();
+		}
+		return count;
 	}
 
 	public static Node<Integer> arrToList(int a[]) {
