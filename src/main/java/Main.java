@@ -231,11 +231,9 @@ public class Main {
 				else
 					endIndex=i;
 			}
-			
 			i++;
 			p1 = p1.getNext();
 		}
-		
 		if (startIndex==-1)
 			return -1;
 		if (endIndex==-1) {
